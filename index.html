@@ -117,5 +117,476 @@
         </li>
       </ul>
     </nav>
+    <main id="main-doc">
+      <section class="main-section" id="Introduction">
+        <header>Introduction</header>
+        <article>
+          <p>
+            The destructuring assignment is a cool feature that came along with
+            ES6. Destructuring is a JavaScript expression that makes it possible
+            to unpack values from arrays, or properties from objects, into
+            distinct variables. That is, we can extract data from arrays and
+            objects and assign them to variables.
+          </p>
+        </article>
+      </section>
+      <section class="main-section" id="Why_is_this_necessary?">
+        <header>Why is this necessary?</header>
+        <article>
+          <p>
+            Imagine we want extract data from an array. Previously, how would
+            this be done?
+          </p>
+          <code>
+            let introduction = ["Hello", "I" , "am", "Sarah"]; let greeting =
+            introduction[0]; let name = introduction[3];
+            console.log(greeting);//"Hello" console.log(name);//"Sarah"
+          </code>
+          <p>
+            We can see that when we want to extract data from an array, we have
+            to do the same thing over and over again.
+          </p>
+          <p>
+            The ES6 destucturing assignment makes it easier to extract this
+            data. How is this so? First, we will discuss the destructuring
+            assignment with arrays. Then we will move on to object
+            destructuring.
+          </p>
+          <p>Let's get started.</p>
+        </article>
+      </section>
+      <section class="main-section" id="Basic_Array_Destructuring">
+        <header>Basic Array Destructuring</header>
+        <article>
+          <p>
+            If we want to extract data from arrays, it's quite simple using the
+            destructuring assignment.
+          </p>
+          <p>
+            Let's refer to our first example for arrays. Instead of going
+            through that repetitive process, we can do both examples below that
+            will yield the same result:
+          </p>
+          <ul>
+            <li>
+              <code>
+                let introduction = ["Hello", "I" , "am", "Sarah"]; let
+                [greeting, pronoun] = introduction;
+                console.log(greeting);//"Hello" console.log(pronoun);//"I"
+              </code>
+            </li>
+            <code>
+              let [greeting, pronoun] = ["Hello", "I" , "am", "Sarah"];
+              console.log(greeting);//"Hello" console.log(pronoun);//"I"
+            </code>
+            <li></li>
+          </ul>
+        </article>
+      </section>
+      <section class="main-section" id="Declaring_Variables_before_Assignment">
+        <header>Declaring Variables before Assignment</header>
+        <article>
+          <p>Variables can be declared before being assigned like this:</p>
+          <code>
+            let greeting, pronoun; [greeting, pronoun] = ["Hello", "I" , "am",
+            "Sarah"]; console.log(greeting);//"Hello" console.log(pronoun);//"I"
+          </code>
+          <p>
+            Notice that the variables are set from left to right. So the first
+            variable gets the first item in the array, the second variable gets
+            the second item in the array, and so on.
+          </p>
+        </article>
+      </section>
+      <section class="main-section" id="Skipping_Items_in_an_Array">
+        <header>Skipping Items in an Array</header>
+        <article>
+          <p>
+            What if we want to get the first and last item on our array instead
+            of the first and second item, and we want to assign only two
+            variables? This can also be done. Look at the example below:
+          </p>
+          <code>
+            let [greeting,,,name] = ["Hello", "I" , "am", "Sarah"];
+            console.log(greeting);//"Hello" console.log(name);//"Sarah"
+          </code>
+          <p>What just happened?</p>
+          <p>
+            Look at the array on the left side of the variable assignment.
+            Notice that instead of having just one comma, we have three. The
+            comma separator is used to skip values in an array. So if you want
+            to skip an item in an array, just use a comma.
+          </p>
+          <p>
+            Let's do another one. Let's skip the first and third item on the
+            list. How would we do this?
+          </p>
+          <code>
+            let [,pronoun,,name] = ["Hello", "I" , "am", "Sarah"];
+            console.log(pronoun);//"I" console.log(name);//"Sarah"
+          </code>
+          <p>
+            So the comma separator does the magic. So if we want to skip all
+            items, we just do this:
+          </p>
+          <code> let [,,,,] = ["Hello", "I" , "am", "Sarah"]; </code>
+        </article>
+      </section>
+      <section class="main-section" id="Assigning_the_rest_of_an_array">
+        <header>Assigning the rest of an array</header>
+        <article>
+          <p>
+            What if we want to assign some of the array to variables and the
+            rest of the items in an array to a particular variable? In that
+            case, we would do this:
+          </p>
+          <code>
+            let [greeting,...intro] = ["Hello", "I" , "am", "Sarah"];
+            console.log(greeting);//"Hello" console.log(intro);//["I", "am",
+            "Sarah"]
+          </code>
+          <p>
+            Using this pattern, you can unpack and assign the remaining part of
+            an array to a variable.
+          </p>
+        </article>
+      </section>
+      <section
+        class="main-section"
+        id="Destructuring_Assignment_with_Functions"
+      >
+        <header>Destructuring Assignment with Functions</header>
+        <article>
+          <p>
+            We can also extract data from an array returned from a function.
+            Let's say we have a function that returns an array like the example
+            below:
+          </p>
+          <code>
+            function getArray() { return ["Hello", "I" , "am", "Sarah"]; } let
+            [greeting,pronoun] = getArray(); console.log(greeting);//"Hello"
+            console.log(pronoun);//"I"
+          </code>
+          <p>We get the same results.</p>
+        </article>
+      </section>
+      <section class="main-section" id="Using_Default_Values_(Array)">
+        <header>Using Default Values (Array)</header>
+        <article>
+          <p>
+            Default values can be assigned to the variables just in case the
+            value extracted from the array is
+            <code class="code-inline">undefined</code>:
+          </p>
+          <code>
+            let [greeting = "hi",name = "Sarah"] = ["hello"];
+            console.log(greeting);//"Hello" console.log(name);//"Sarah"
+          </code>
+          <p>
+            So <code class="code-inline">name</code> falls back to "Sarah"
+            because it is not defined in the array.
+          </p>
+        </article>
+      </section>
+      <section
+        class="main-section"
+        id="Swapping_Values_using_the_Destructuring_Assignment"
+      >
+        <header>Swapping Values using the Destructuring Assignment</header>
+        <article>
+          <p>
+            One more thing. We can use the destructuring assignment to swap the
+            values of variables:
+          </p>
+          <code>
+            let a = 3; let b = 6; [a,b] = [b,a]; console.log(a);//6
+            console.log(b);//3
+          </code>
+          <p>Next, let's move on to Object Destructuring.</p>
+        </article>
+      </section>
+      <section class="main-section" id="Object_Destructuring">
+        <header>Object Destructuring</header>
+        <article>
+          <p>First, let's see why there is a need for object destructuring.</p>
+          <p>
+            Say we want to extract data from an object and assign to new
+            variables. Prior to ES6, how would this be done?
+          </p>
+          <code>
+            let person = {name: "Sarah", country: "Nigeria", job: "Developer"};
+            let name = person.name; let country = person.country; let job =
+            person.job; console.log(name);//"Sarah"
+            console.log(country);//"Nigeria" console.log(job);//Developer"
+          </code>
+          <p>
+            See how tedious it is to extract all the data. We have to repeatedly
+            do the same thing. ES6 destructuring really saves the day. Let's
+            jump right into it.
+          </p>
+        </article>
+      </section>
+      <section class="main-section" id="Basic_Object_Destructuring">
+        <header>Basic Object Destructuring</header>
+        <article>
+          <p>
+            Let's repeat the above example with ES6. Instead of assigning values
+            one by one, we can use the object on the left to extract the data:
+          </p>
+          <code>
+            let person = {name: "Sarah", country: "Nigeria", job: "Developer"};
+            let {name, country, job} = person; console.log(name);//"Sarah"
+            console.log(country);//"Nigeria" console.log(job);//Developer"
+          </code>
+          <p>
+            You'll get the same results. It is also valid to assign variables to
+            an object that haven't been declared:
+          </p>
+          <code>
+            let {name, country, job} = {name: "Sarah", country: "Nigeria", job:
+            "Developer"}; console.log(name);//"Sarah"
+            console.log(country);//"Nigeria" console.log(job);//Developer"
+          </code>
+        </article>
+      </section>
+      <section
+        class="main-section"
+        id="Variables_declared_before_being_assigned"
+      >
+        <header>Variables declared before being assigned</header>
+        <article>
+          <p>
+            Variables in objects can be declared before being assigned with
+            destructuring. Let's try that:
+          </p>
+          <code>
+            let person = {name: "Sarah", country: "Nigeria", job: "Developer"};
+            let name, country, job; {name, country, job} = person;
+            console.log(name);// Error : "Unexpected token =""
+          </code>
+          <p>
+            Wait, what just happened?! Oh, we forgot to add
+            <code class="code-inline">()</code> before the curly brackets.
+          </p>
+          <p>
+            The <code class="code-inline">( )</code> around the assignment
+            statement is required syntax when using the object literal
+            destructuring assignment without a declaration. This is because the
+            <code class="code-inline">{}</code> on the left hand side is
+            considered a block and not an object literal. So here's how to do
+            this the right way:
+          </p>
+          <code>
+            let person = {name: "Sarah", country: "Nigeria", job: "Developer"};
+            let name, country, job; ({name, country, job} = person);
+            console.log(name);//"Sarah" console.log(job);//"Developer"
+          </code>
+          <p>
+            It is also important to note that when using this syntax, the
+            <code class="code-inline">()</code> should be preceded by a
+            semicolon. Otherwise it might be used to execute a function from the
+            previous line.
+          </p>
+          <p>
+            Note that the variables in the object on the left hand side should
+            have the same name as a property key in the object
+            <code class="code-inline">person</code>. If the names are different,
+            we'll get <code class="code-inline">undefined</code>:
+          </p>
+          <code>
+            let person = {name: "Sarah", country: "Nigeria", job: "Developer"};
+            let {name, friends, job} = person; console.log(name);//"Sarah"
+            console.log(friends);//undefined
+          </code>
+          <p>But if we want to use a new variable name, well, we can.</p>
+        </article>
+      </section>
+      <section class="main-section" id="Using_a_new_Variable_Name">
+        <header>Using a new Variable Name</header>
+        <article>
+          <p>
+            If we want to assign values of an object to a new variable instead
+            of using the name of the property, we can do this:
+          </p>
+          <code>
+            let person = {name: "Sarah", country: "Nigeria", job: "Developer"};
+            let {name: foo, job: bar} = person; console.log(foo);//"Sarah"
+            console.log(bar);//"Developer"
+          </code>
+          <p>
+            So the values extracted are passed to the new variables
+            <code class="code-inline">foo</code> and
+            <code class="code-inline">bar</code>.
+          </p>
+        </article>
+      </section>
+      <section class="main-section" id="Using_Default_Values_(Object)">
+        <header>Using Default Values (Object)</header>
+        <article>
+          <p>
+            Default values can also be used in object destructuring, just in
+            case a variable is <code class="code-inline">undefined</code> in an
+            object it wants to extract data from:
+          </p>
+          <code>
+            let person = {name: "Sarah", country: "Nigeria", job: "Developer"};
+            let {name = "myName", friend = "Annie"} = person;
+            console.log(name);//"Sarah" console.log(friend);//"Annie"
+          </code>
+          <ul>
+            <li>
+              <p>
+                * So if the value is not undefined, the variable stores the
+                value extracted from the object as in the case of
+                <code class="code-inline">name</code>.
+              </p>
+            </li>
+            <li>
+              <p>
+                * Otherwise, it used the default value as it did for
+                <code class="code-inline">friend</code>.
+              </p>
+            </li>
+          </ul>
+          <p>
+            We can also set default values when we assign values to a new
+            variable:
+          </p>
+          <code>
+            let person = {name: "Sarah", country: "Nigeria", job: "Developer"};
+            let {name:foo = "myName", friend: bar = "Annie"} = person;
+            console.log(foo);//"Sarah" console.log(bar);//"Annie"
+          </code>
+          <ul>
+            <li>
+              <p>
+                * So <code class="code-inline">name</code> was extracted from
+                <code class="code-inline">person</code> and assigned to a
+                different variable.
+              </p>
+            </li>
+            <li>
+              <p>
+                * <code class="code-inline">friend</code>, on the other hand,
+                was <code class="code-inline">undefined</code> in
+                <code class="code-inline">person</code>, so the new variable
+                <code class="code-inline">bar</code> was assigned the default
+                value.
+              </p>
+            </li>
+          </ul>
+        </article>
+      </section>
+      <section class="main-section" id="Computed_Property_Name">
+        <header>Computed Property Name</header>
+        <article>
+          <p>
+            Computed property name is another object literal feature that also
+            works for destructuring. You can specify the name of a property via
+            an expression if you put it in square brackets:
+          </p>
+          <code>
+            let prop = "name"; let {[prop] : foo} = {name: "Sarah", country:
+            "Nigeria", job: "Developer"}; console.log(foo);//"Sarah"
+          </code>
+        </article>
+      </section>
+      <section class="main-section" id="Combining_Arrays_with_Objects">
+        <header>Combining Arrays with Objects</header>
+        <article>
+          <p>Arrays can also be used with objects in object destructuring:</p>
+          <code>
+            let person = {name: "Sarah", country: "Nigeria", friends: ["Annie",
+            "Becky"]}; let {name:foo, friends: bar} = person;
+            console.log(foo);//"Sarah" console.log(bar);//["Annie", "Becky"]
+          </code>
+        </article>
+      </section>
+      <section class="main-section" id="Nesting_in_Object_Destructuring">
+        <header>Nesting in Object Destructuring</header>
+        <article>
+          <p>Objects can also be nested when destructuring:</p>
+          <code>
+            let person = { name: "Sarah", place: { country: "Nigeria", city:
+            "Lagos" }, friends : ["Annie", "Becky"] }; let {name:foo, place: {
+            country : bar, city : x} } = person; console.log(foo);//"Sarah"
+            console.log(bar);//"Nigeria"
+          </code>
+        </article>
+      </section>
+      <section class="main-section" id="Rest_in_Object_Destructuring">
+        <header>Rest in Object Destructuring</header>
+        <article>
+          <p>
+            The rest syntax can also be used to pick up property keys that are
+            not already picked up by the destructuring pattern. Those keys and
+            their values are copied into a new object:
+          </p>
+          <code>
+            let person = {name: "Sarah", country: "Nigeria", job: "Developer"
+            friends: ["Annie", "Becky"]}; let {name, friends, ...others} =
+            person; console.log(name);//"Sarah" console.log(friends);//["Annie",
+            "Becky"] console.log(others);// {country: "Nigeria", job:
+            "Developer"}
+          </code>
+          <p>
+            Here, the remaining properties whose keys where not part of the
+            variable names listed were assigned to the variable
+            <code class="code-inline">others</code>. The rest syntax here is
+            <code class="code-inline">...others</code>.
+            <code class="code-inline">others</code> can be renamed to whatever
+            variable you want.
+          </p>
+          <p>
+            One last thing – let's see how Object Destructing can be used in
+            functions.
+          </p>
+        </article>
+      </section>
+      <section class="main-section" id="Object_Destructuring_and_Functions">
+        <header>Object Destructuring and Functions</header>
+        <article>
+          <p>
+            Object Destructuring can be used to assign parameters to functions:
+          </p>
+          <code>
+            function person({name: x, job: y} = {}) { console.log(x); }
+            person({name: "Michelle"});//"Michelle" person();//undefined
+            person(friend);//Error : friend is not defined
+          </code>
+          <p>
+            Notice the <code class="code-inline">{}</code> on the right hand
+            side of the parameters object. It makes it possible for us to call
+            the function without passing any arguments. That is why we got
+            <code class="code-inline">undefined</code>. If we remove it, we'll
+            get an error message.
+          </p>
+          <p>We can also assign default values to the parameters:</p>
+          <code>
+            function person({name: x = "Sarah", job: y = "Developer"} = {}) {
+            console.log(x); } person({name});//"Sarah"
+          </code>
+          <p>
+            We can do a whole lot of things with Array and Object Destructuring
+            as we have seen in the examples above.
+          </p>
+        </article>
+      </section>
+      <section class="main-section" id="Reference">
+        <header>Reference</header>
+        <article>
+          <ul>
+            <li>
+              All the documentation in this page are taken from
+              <a
+                href="https://www.freecodecamp.org/news/array-and-object-destructuring-in-javascript/"
+                target="_blank"
+                >freeCodeCamp</a
+              >.
+            </li>
+          </ul>
+        </article>
+      </section>
+    </main>
   </body>
 </html>
