@@ -95,3 +95,31 @@ code {
   margin: 0;
   padding: 0.1rem;
 }
+
+@media (max-width: 780px) {
+  #navbar {
+    background-color: #fefefe;
+    position: absolute;
+    top: 0;
+    margin: 0;
+    padding: 0;
+    max-height: 18.1rem;
+    width: 100%;
+    z-index: 1;
+    border-bottom: 1px solid;
+    scroll-behavior: smooth;
+  }
+
+  #navbar > ul {
+    height: 14rem;
+    border: 2px solid;
+  }
+
+  #main-doc {
+    position: relative;
+    margin-top: 20rem;
+    margin-left: 1rem;
+    margin-right: 0.3rem;
+    scroll-behavior: smooth;
+  }
+}
